@@ -3,19 +3,40 @@ set -e
 
 echo "📦 Setting up raspi-wifi-ap..."
 
-# 1. Install packages
-sudo apt-get update
-sudo apt-get install -y hostapd dnsmasq python3-flask
+# function: install system dependencies
+install_dependencies() {
+    echo "Installing required packages..."
+    sudo apt-get update
+    sudo apt-get install -y hostapd dnsmasq python3-flask
+}
 
-# 2. Stop services before config
-sudo systemctl stop hostapd
-sudo systemctl stop dnsmasq
+# function: stop conflicting services
+stop_services() {
+    echo "Stopping hostapd and dnsmasq..."
+    sudo systemctl stop hostapd || true
+    sudo systemctl stop dnsmasq || true
+}
 
-# 3. Copy configs (you’ll update these later)
-sudo cp ap_mode/hostapd.conf /etc/hostapd/hostapd.conf
-sudo cp ap_mode/dnsmasq.conf /etc/dnsmasq.conf
+# function: copy default AP configs
+copy_configs() {
+    echo "Copying configuration files..." 
+    sudo cp ap_mode/hostapd.conf /etc/hostapd/hostapd.conf
+    sudo cp ap_mode/dnsmasq.conf /etc/dnsmasq.conf
+}
 
-# 4. Enable hostapd
-sudo sed -i 's|#DAEMON_CONF=".*"|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+# function: configure hostapd default path
+configure_hostapd() {
+    echo "Settings hostapd default config file..."
+    sudo sed -i 's|#DAEMON_CONF=".*"|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+}
 
-echo "✅ Done. Next: configure AP mode and create portal"
+# main runner
+main() {
+    install_dependencies
+    stop_services
+    copy_configs
+    configure_hostapd
+    echo "Setup complete. Next: create your AP config and captive portal."
+}
+
+main "S@"
