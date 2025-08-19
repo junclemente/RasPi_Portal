@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "📦 Setting up raspi-wifi-ap..."
+echo "Starting raspi-wifi-ap setup..."
 
 # function: install system dependencies
 install_dependencies() {
