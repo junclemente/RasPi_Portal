@@ -8,7 +8,7 @@ setup_ip() {
     echo "Setting static IP for wlan0..."
     sudo ip link set wlan0 down
     sudo ip addr flush dev wlan0
-    sudo ip addr ad 192.168.4.1/24 dev wlan0
+    sudo ip addr add 192.168.4.1/24 dev wlan0
     sudo ip link set wlan0 up
 }
 
