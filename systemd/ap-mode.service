@@ -1,0 +1,12 @@
+[Unit]
+Description=Start Access Point Mode on Boot
+After=network.target
+Wants=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/Raspi_Portal/scripts/start_ap_mode.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
