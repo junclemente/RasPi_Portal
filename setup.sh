@@ -20,6 +20,7 @@ stop_services() {
 # function: copy default AP configs
 copy_configs() {
     echo "Copying configuration files..." 
+    sudo mkdir -p /etc/hostapd
     sudo cp ap_mode/hostapd.conf /etc/hostapd/hostapd.conf
     sudo cp ap_mode/dnsmasq.conf /etc/dnsmasq.conf
 }
@@ -27,7 +28,7 @@ copy_configs() {
 # function: configure hostapd default path
 configure_hostapd() {
     echo "Settings hostapd default config file..."
-    sudo sed -i 's|#DAEMON_CONF=".*"|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+    sudo sed -i 's|^#DAEMON_CONF=.*|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
 }
 
 # install and enable systemd services
