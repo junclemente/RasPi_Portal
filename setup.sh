@@ -60,7 +60,7 @@ setup_services() {
 set_permissions() {
     echo "Setting executable permissions..."
     chmod +x scripts/*.sh
-    chmod +x scripts/start_ap_mode.sh
+    # chmod +x "$HOME/raspi_portal/scripts/start_ap_mode.sh"
     chmod +x web_portal/app.py
 }
 
@@ -70,8 +70,8 @@ main() {
     stop_services
     copy_configs
     configure_hostapd
-    setup_services
     set_permissions
+    setup_services
     echo "Setup complete. Next: create your AP config and captive portal."
 }
 
