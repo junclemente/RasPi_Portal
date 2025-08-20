@@ -38,3 +38,12 @@ main() {
     start_portal
     echo "Access Point is now active!"
 }
+
+# --- Start Flask Captive Portal App ---
+echo "Starting Flask app..."
+LOG_DIR="/home/pi/raspi_portal/logs"
+APP_PATH="/home/pi/raspi_portal/web_portal/app.py"
+PORT=8080
+
+mkdir -p "$LOG_DIR"
+nohup /usr/bin/python3 "$APP_PATH" --port=$PORT >> "$LOG_DIR/app.log" 2>&1 &
