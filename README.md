@@ -1,4 +1,4 @@
-# 📡 raspi-wifi-ap
+# 📡 RasPi_Portal
 
 **Automatic Wi-Fi Access Point Mode for Raspberry Pi**
 
