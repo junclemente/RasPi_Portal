@@ -23,6 +23,7 @@ copy_configs() {
     sudo mkdir -p /etc/hostapd
     sudo cp ap_mode/hostapd.conf /etc/hostapd/hostapd.conf
     sudo cp ap_mode/dnsmasq.conf /etc/dnsmasq.conf
+    sudo cp ap_mode/dhcpcd.conf /etc/dhcpcd.conf
 }
 
 # function: configure hostapd default path
