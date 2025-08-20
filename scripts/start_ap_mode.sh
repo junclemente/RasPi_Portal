@@ -27,7 +27,7 @@ start_hostapd() {
 # start Flask portal
 start_portal() {
     echo "Starting captive portal..."
-    cd /home/pi/RasPi_Portal/webportal
+    cd /home/pi/raspi_portal/webportal
     nohup python3 app.py > /dev/null 2>&1 &
 }
 

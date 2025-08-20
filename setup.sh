@@ -6,7 +6,7 @@ echo "Starting raspi-wifi-ap setup..."
 # function: install system dependencies
 install_dependencies() {
     echo "Installing required packages..."
-    
+
      # Set noninteractive mode to skip config file prompts
     export DEBIAN_FRONTEND=noninteractive
     sudo apt-get install -y --option=Dpkg::Options::="--force-confold" hostapd dnsmasq python3-flask dhcpcd5
@@ -44,10 +44,16 @@ configure_hostapd() {
 # install and enable systemd services
 setup_services() {
     echo "Installing and enabling systemd services..."
-    sudo cp systemd/ap-mode.service /etc/systemd/system/
-    sudo cp systemd/wifi-check.service /etc/systemd/system/
-    sudo systemctl enable ap-mode.service
-    sudo systemctl enable wifi-check.service
+    sudo cp systemd/ap_mode.service /etc/systemd/system/ap_mode.service
+    sudo cp systemd/wifi_check.service /etc/systemd/system/wifi_check.service
+
+    sudo systemctl daemon-reload
+    sudo systemctl enable ap_mode.service
+    sudo systemctl enable wifi_check.service
+
+    # start services immediately
+    sudo systemctl restart ap_mode.service || echo "Could not start ap_mode.service"
+    sudo systemctl restart wifi_check.service || echo "Could not start wifi_check.service"
 }
 
 # fix script permissions

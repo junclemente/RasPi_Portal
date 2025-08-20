@@ -5,7 +5,7 @@ Wants=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/Raspi_Portal/scripts/start_ap_mode.sh
+ExecStart=/home/pi/raspi_portal/scripts/start_ap_mode.sh
 RemainAfterExit=true
 
 [Install]
