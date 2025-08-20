@@ -7,7 +7,7 @@ echo "Starting raspi-wifi-ap setup..."
 install_dependencies() {
     echo "Installing required packages..."
     sudo apt-get update
-    sudo apt-get install -y hostapd dnsmasq python3-flask
+    sudo apt-get install -y hostapd dnsmasq python3-flask dhcpcd5
 }
 
 # function: stop conflicting services
