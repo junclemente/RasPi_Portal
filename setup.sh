@@ -15,6 +15,10 @@ stop_services() {
     echo "Stopping hostapd and dnsmasq..."
     sudo systemctl stop hostapd || true
     sudo systemctl stop dnsmasq || true
+
+    echo "Disable NetworkManager (if running)..."
+    sudo systemctl stop NetworkManager || true
+    sudo systemctl disable NetworkManager || true 
 }
 
 # function: copy default AP configs
@@ -24,6 +28,9 @@ copy_configs() {
     sudo cp ap_mode/hostapd.conf /etc/hostapd/hostapd.conf
     sudo cp ap_mode/dnsmasq.conf /etc/dnsmasq.conf
     sudo cp ap_mode/dhcpcd.conf /etc/dhcpcd.conf
+
+    echo "Restarting dhcpcd to apply static IP config..." 
+    sudo systemctl restart dhcpcd
 }
 
 # function: configure hostapd default path
