@@ -30,12 +30,30 @@ configure_hostapd() {
     sudo sed -i 's|#DAEMON_CONF=".*"|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
 }
 
+# install and enable systemd services
+setup_services() {
+    echo "Installing and enabling systemd services..."
+    sudo cp systemd/ap-mode.service /etc/systemd/system/
+    sudo cp systemd/wifi-check.service /etc/systemd/system/
+    sudo systemctl enable ap-mode.service
+    sudo systemctl enable wifi-check.service
+}
+
+# fix script permissions
+set_permissions() {
+    echo "Setting executable permissions..."
+    chmod +x scripts/*.sh
+    chmod +x web_portal/app.py
+}
+
 # main runner
 main() {
     install_dependencies
     stop_services
     copy_configs
     configure_hostapd
+    setup_services
+    set_permissions
     echo "Setup complete. Next: create your AP config and captive portal."
 }
 
