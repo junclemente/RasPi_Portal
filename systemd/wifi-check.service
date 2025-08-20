@@ -1,0 +1,12 @@
+[Unit]
+Description=Check for Wi-Fi on Boot
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/pi/Raspi_Portal/scripts/wifi_check.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
