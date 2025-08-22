@@ -1,0 +1,22 @@
+[Unit]
+Description=RasPi_Portal Flask Web App (port 80)
+After=hostapd.service dnsmasq.service network.target
+Wants=hostapd.service dnsmasq.service
+
+[Service]
+Type=simple
+# Important: this makes `from app import app` resolve correctly
+WorkingDirectory=/home/pi/raspi_portal/web_portal
+# Run the launcher we install to /usr/local/bin
+ExecStart=/usr/bin/python3 /usr/local/bin/run_portal.py
+User=pi
+Group=pi
+Restart=on-failure
+Environment=FLASK_ENV=production
+# allow binding to privileged port 80 without running as root
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
