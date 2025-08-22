@@ -85,6 +85,13 @@ setup_services() {
   sudo systemctl restart ap_mode.service || echo "Could not start ap_mode.service"
   sudo systemctl restart dnsmasq || true
   sudo systemctl restart web_portal.service || echo "Could not start web_portal.service"
+
+
+  if ! systemctl is-active --quiet web_portal.service; then
+  echo "❌ web_portal.service failed to start. Recent logs:"
+  journalctl -u web_portal.service -n 20 --no-pager
+fi
+
 }
 
 main() {

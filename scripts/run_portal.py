@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""
-Launch RasPi_Portal Flask app on 0.0.0.0:80 without editing app.py.
-Assumes WorkingDirectory is set to web_portal/ so `from app import app` works.
-"""
-from app import (
-    app as flask_app,
-)  # web_portal/app.py must define `app = Flask(__name__)`
 
-if __name__ == "__main__":
-    # No debug, production-ish single-process (good enough for portal)
-    flask_app.run(host="0.0.0.0", port=80)
+import sys
+from pathlib import Path
+
+# Add the web_portal folder to the Python path
+project_root = Path(__file__).resolve().parent
+web_portal_path = project_root / "web_portal"
+sys.path.insert(0, str(web_portal_path))
+
+# Import and run the Flask app
+from app import app
+
+app.run(host="0.0.0.0", port=80)
