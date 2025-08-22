@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 import subprocess
 from pathlib import Path
+import os
 
 REPO_ROOT = Path(__file__).resolve().parent
-SETUP_SH = REPO_ROOT / "setup.sh"
+INSTALL_SH = REPO_ROOT / "install.sh"
 
 
 def main():
-    if not SETUP_SH.exists():
-        print(f"❌ {SETUP_SH} not found.")
+    if not INSTALL_SH.exists():
+        print(f"❌ {INSTALL_SH} not found.")
         return
 
-    print(f"🚀 Running {SETUP_SH} ...")
+    # Ensure it's executable
+    if not os.access(INSTALL_SH, os.X_OK):
+        print(f"ℹ️  Making {INSTALL_SH} executable...")
+        INSTALL_SH.chmod(0o755)
+
+    print(f"🚀 Running {INSTALL_SH} ...")
     try:
-        subprocess.run(["sudo", str(SETUP_SH)], check=True)
+        subprocess.run(["sudo", "bash", str(INSTALL_SH)], check=True)
         print("✅ Install finished")
     except subprocess.CalledProcessError as e:
         print(f"❌ Install failed with exit code {e.returncode}")

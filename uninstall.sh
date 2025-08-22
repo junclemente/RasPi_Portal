@@ -122,6 +122,7 @@ main() {
   purge_configs
   purge_packages
   summary
+  exit 0
 }
 
 main "$@"
