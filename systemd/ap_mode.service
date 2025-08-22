@@ -5,8 +5,9 @@ Wants=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/raspi_portal/scripts/start_ap_mode.sh
-RemainAfterExit=true
+# Call the Python helper (explicit interpreter for reliability)
+ExecStart=/usr/bin/python3 /usr/local/bin/ap_mode.py
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
