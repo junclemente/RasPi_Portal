@@ -60,7 +60,6 @@ install_scripts() {
   sudo install -m 755 "$SCRIPTS_DIR/ap_mode.py"      "$BIN_DIR/ap_mode.py"
   sudo install -m 755 "$SCRIPTS_DIR/wifi_check.py"   "$BIN_DIR/wifi_check.py"
   sudo install -m 755 "$SCRIPTS_DIR/wifi_watchdog.py" "$BIN_DIR/wifi_watchdog.py"
-  sudo install -m 755 "$SCRIPTS_DIR/run_portal.py"   "$BIN_DIR/run_portal.py"
   # make sure uninstall is executable for convenience
   [ -f "$REPO_ROOT/uninstall.sh" ] && chmod +x "$REPO_ROOT/uninstall.sh" || true
 }

@@ -8,7 +8,7 @@ Type=simple
 # Important: this makes `from app import app` resolve correctly
 WorkingDirectory=/home/pi/raspi_portal/web_portal
 # Run the launcher we install to /usr/local/bin
-ExecStart=/usr/bin/python3 /usr/local/bin/run_portal.py
+ExecStart=/usr/bin/python3 /home/pi/raspi_portal/web_portal/run_portal.py
 User=pi
 Group=pi
 Restart=on-failure
