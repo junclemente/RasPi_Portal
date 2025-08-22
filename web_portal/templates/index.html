@@ -51,6 +51,23 @@
         required
       /><br /><br />
       <button type="submit">Connect</button>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="WiFi Password"
+        required
+      />
+      <br />
+      <label>
+        <input type="checkbox" onclick="togglePassword()" /> Show Password
+      </label>
     </form>
+    <script>
+      function togglePassword() {
+        const pw = document.getElementById("password")
+        pw.type = pw.type === "password" ? "text" : "password"
+      }
+    </script>
   </body>
 </html>
