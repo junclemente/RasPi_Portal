@@ -1,0 +1,12 @@
+[Unit]
+Description=Bring AP back if Wi-Fi is not connected
+After=multi-user.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /home/pi/RASPI_PORTAL/scripts/wifi_watchdog.py
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
