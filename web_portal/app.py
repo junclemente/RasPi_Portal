@@ -1,6 +1,13 @@
 import os, shlex, subprocess, tempfile, time
 from pathlib import Path
-from flask import Flask, request, render_template_string, redirect, url_for
+from flask import (
+    Flask,
+    request,
+    render_template_string,
+    render_template,
+    redirect,
+    url_for,
+)
 
 app = Flask(__name__)
 
@@ -147,3 +154,8 @@ def configure():
         return render_template_string(SUCCESS_PAGE, ssid=ssid)
     except Exception as e:
         return render_template_string(ERROR_PAGE, err=str(e)), 500
+
+
+@app.get("/")
+def index():
+    return render_template("index.html")
