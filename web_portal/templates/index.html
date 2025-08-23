@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lan="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Connect to Wi-Fi</title>
@@ -46,23 +46,18 @@
       <input type="text" name="ssid" placeholder="WiFi SSID" required /><br />
       <input
         type="password"
-        name="password"
-        placeholder="WiFi Password"
-        required
-      /><br /><br />
-      <button type="submit">Connect</button>
-      <input
-        type="password"
         id="password"
         name="password"
         placeholder="WiFi Password"
         required
-      />
-      <br />
+      /><br /><br />
       <label>
-        <input type="checkbox" onclick="togglePassword()" /> Show Password
-      </label>
+        <input type="checkbox" onclick="togglePassword()" />
+        Show Password </label
+      ><br /><br />
+      <button type="submit">Connect</button>
     </form>
+
     <script>
       function togglePassword() {
         const pw = document.getElementById("password")
